@@ -1,10 +1,12 @@
 <?php
 namespace Controllers;
 
+use MVC\Router;
+
 class LoginController {
     // Iniciar sesion
-    public static function login(){
-        echo 'Desde login';
+    public static function login(Router $router){
+        $router -> render('auth/login');
     }
 
     // Cerrar sesion
