@@ -1,14 +1,15 @@
 <?php
 
-function debuguear($variable) : string {
+function debuguear($variable, $stop = false) : void {
     echo "<pre>";
     var_dump($variable);
     echo "</pre>";
-    exit;
+    if($stop)
+        exit;
 }
 
 // Escapa / Sanitizar el HTML
-function s($html) : string {
-    $s = htmlspecialchars($html);
-    return $s;
+function sz($html) : string {
+    $sz = htmlspecialchars($html);
+    return $sz;
 }
