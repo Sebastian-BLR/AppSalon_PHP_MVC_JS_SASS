@@ -18,5 +18,7 @@
         border: none;
         padding: calc( v.$separacion / 4);
         border-radius: 1rem;
+        // arregla desbordamiento
+        min-width: 1%;
     }
 }
