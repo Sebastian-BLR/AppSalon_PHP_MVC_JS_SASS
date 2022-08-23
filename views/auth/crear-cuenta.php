@@ -5,27 +5,27 @@
 
     <div class="campo">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+        <input type="text" id="nombre" name="nombre" value="<?php echo sz($usuario -> nombre); ?>" placeholder="Tu nombre">
     </div>
 
     <div class="campo">
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" placeholder="Tu apellido">
+        <input type="text" id="apellido" name="apellido" value="<?php echo sz($usuario -> apellido); ?>" placeholder="Tu apellido">
     </div>
 
     <div class="campo">
         <label for="telefon">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="Tu Teléfono">
+        <input type="tel" id="telefono" name="telefono" value="<?php echo sz($usuario -> telefono); ?>" placeholder="Tu Teléfono">
     </div>
 
     <div class="campo">
         <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Tu E-mail">
+        <input type="email" id="email" name="email" value="<?php echo sz($usuario -> email ); ?>" placeholder="Tu E-mail">
     </div>
 
     <div class="campo">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Tu Password">
+        <input type="password" id="password" name="password"  placeholder="Tu Password">
     </div>
 
     <input class="boton" type="submit" value="Crear Cuenta">
