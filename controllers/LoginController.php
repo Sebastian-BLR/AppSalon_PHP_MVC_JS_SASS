@@ -39,14 +39,14 @@ class LoginController {
             if(empty($alertas)){
                 // verificar que el usuario no este registrado
                 $resultado = $usuario -> existeUsuario();
-                
                 if($resultado -> num_rows)
                     $alertas = Usuario::getAlertas();
-                else
-                    // No esta registrado
-                    debuguear('No esta registrado');
+                else{
+                    // Hashear el Password
+                    $usuario -> hashPassword();
+                    debuguear($usuario);
+                }
             }
-
         endif;
 
         $router -> render('auth/crear-cuenta',[
