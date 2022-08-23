@@ -34,7 +34,10 @@ class Usuario extends ActiveRecord{
     // Mensajes de validadcion para la creacion de la cuenta
     public function validarNuevaCuenta(){
         if(!$this -> nombre)
-            self::$alertas['error'][] = 'El nombre del cliente es obligatorio';
+            self::$alertas['error'][] = 'El Nombre del cliente es obligatorio';
+        
+        if(!$this -> apellido)
+            self::$alertas['error'][] = 'El Apellido del cliente es obligatorio';
         
         return self::$alertas;
     }
