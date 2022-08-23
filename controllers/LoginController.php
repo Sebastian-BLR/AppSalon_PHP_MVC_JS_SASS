@@ -31,12 +31,16 @@ class LoginController {
         // Alertas vacias
         $alertas = [];
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'):
             $usuario -> sincronizar($_POST);
             $alertas = $usuario -> validarNuevaCuenta();
 
+            // Revisar que alertas este vacio
+            if(empty($alertas)){
+                // verificar que el usuario no este registrado
+            }
 
-        }
+        endif;
 
         $router -> render('auth/crear-cuenta',[
             'usuario' => $usuario,
