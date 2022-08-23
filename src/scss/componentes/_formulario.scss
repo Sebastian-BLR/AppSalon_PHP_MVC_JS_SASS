@@ -2,7 +2,10 @@
 @use 'base/variables' as v;
 
 .formulario{
-    margin-top: v.$separacion;
+    margin-top: v.$separacion * .7;    
+    @include m.tablet{
+    margin-top: v.$separacion;    
+    }
     width: 100%;
 }
 
