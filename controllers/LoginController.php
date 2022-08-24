@@ -8,7 +8,21 @@ use MVC\Router;
 class LoginController {
     // Iniciar sesion
     public static function login(Router $router){
-        $router -> render('auth/login');
+        $alertas=[];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'):
+            $auth    = new Usuario($_POST);
+            $alertas = $auth -> validarLogin();
+        endif; //$_SERVER['REQUEST_METHOD'] === 'POST'
+
+
+
+
+
+
+        $router -> render('auth/login',[
+            'alertas' => $alertas
+        ]);
     }
 
     // Cerrar sesion
@@ -86,7 +100,7 @@ class LoginController {
             $usuario -> token = null;
             $usuario -> guardar();
             Usuario::setAlerta('exito', 'Cuenta Comprobada Correctamente');
-            
+
         }else
             Usuario::setAlerta('error', 'Token no valido');
         
