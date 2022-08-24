@@ -53,14 +53,26 @@ class LoginController {
                     $email = new Email($usuario -> email, $usuario -> nombre, $usuario -> token);
 
                     $email -> enviarConfirmacion();
+
+                    // Crear usuario
+                    $resultado = $usuario ->guardar();
+                    
+                    if($resultado)
+                        // Mensaje de confirmacion
+                        header('Location: /mensaje');
+
                 }
             }
-        endif;
+        endif; // $_SERVER['REQUEST_METHOD'] === 'POST'
 
         $router -> render('auth/crear-cuenta',[
             'usuario' => $usuario,
             'alertas' => $alertas
         ]);
+    }
+
+    public static function mensaje(Router $router){
+        $router -> render('auth/mensaje');
     }
 
 }
