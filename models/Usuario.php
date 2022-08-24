@@ -83,5 +83,9 @@ class Usuario extends ActiveRecord{
             self::$alertas['error'][] = 'El password es obligatorio';    
         
         return self::$alertas;
-        }
+    }
+
+    public function comprobarPasswordAndVerificado(){
+        
+    }   
 }
