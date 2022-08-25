@@ -19,7 +19,7 @@ class LoginController {
                 $usuario = Usuario::where('email', $auth -> email);
 
                 if($usuario)
-                    $usuario -> comprobarPasswordAndVerificado();
+                    $usuario -> comprobarPasswordAndVerificado($auth -> password);
                 else
                     Usuario::setAlerta('error', 'El usuario no existe');
             }

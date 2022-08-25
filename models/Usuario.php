@@ -85,7 +85,8 @@ class Usuario extends ActiveRecord{
         return self::$alertas;
     }
 
-    public function comprobarPasswordAndVerificado(){
-        
+    public function comprobarPasswordAndVerificado($password){
+        $resultado = password_verify($password, $this -> password);
+        debuguear($resultado);
     }   
 }
