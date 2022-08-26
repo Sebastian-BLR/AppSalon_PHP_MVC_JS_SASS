@@ -62,9 +62,22 @@ class LoginController {
         if($_SERVER['REQUEST_METHOD'] === 'POST'):
             $auth    = new Usuario($_POST);
             $alertas = $auth -> validarEmail();
-        
+            
+            if(empty($alertas)){
+                $usuario = Usuario::where('email', $auth -> email);
+
+                if($usuario){
+                    if($usuario -> confirmado ===1){
+                        
+                    }else
+                    Usuario::setAlerta('error','El usuario no esta confirmado');
+                }else 
+                    Usuario::setAlerta('error','No existe el usuario');
+
+            }
 
         endif;
+        $alertas = Usuario::getAlertas();
         $router -> render('auth/olvide-password',[
             'alertas' => $alertas
         ]);
