@@ -29,9 +29,10 @@ class LoginController {
                         $_SESSION['login']  = true;
                         
                         // Redirecionamiento
-                        if($usuario -> admin)
+                        if($usuario -> admin){
+                            $_SESSION['admin'] = $usuario -> admin ?? null;
                             header('Location: /admin');
-                        else
+                        }else
                             header('Location: /cita');
                         }
                     }else
@@ -56,7 +57,17 @@ class LoginController {
     
     // Recuperar password
     public static function olvide(Router $router){
-        $router -> render('auth/olvide-password');
+        $alertas = [];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'):
+            $auth    = new Usuario($_POST);
+            $alertas = $auth -> validarEmail();
+        
+
+        endif;
+        $router -> render('auth/olvide-password',[
+            'alertas' => $alertas
+        ]);
     }
 
     public static function recuperar(){
