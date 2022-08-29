@@ -65,10 +65,15 @@ class LoginController {
             
             if(empty($alertas)){
                 $usuario = Usuario::where('email', $auth -> email);
-
+                
                 if($usuario){
-                    if($usuario -> confirmado ===1){
-                        
+                    if($usuario -> confirmado === '1'){
+                        // Generar token 
+                        $usuario -> crearToken();
+                        $usuario -> guardar();
+
+                        // TODO: Enviar email
+                        Usuario::setAlerta('exito', 'Revisa tu email');
                     }else
                     Usuario::setAlerta('error','El usuario no esta confirmado');
                 }else 
