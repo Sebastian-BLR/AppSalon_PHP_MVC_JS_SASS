@@ -72,7 +72,11 @@ class LoginController {
                         $usuario -> crearToken();
                         $usuario -> guardar();
 
-                        // TODO: Enviar email
+                        // Enviar email
+                        $email = new Email($usuario -> email, $usuario -> nombre, $usuario -> token);
+
+                        $email -> enviarInstrucciones();
+                        // Alerta
                         Usuario::setAlerta('exito', 'Revisa tu email');
                     }else
                     Usuario::setAlerta('error','El usuario no esta confirmado');
