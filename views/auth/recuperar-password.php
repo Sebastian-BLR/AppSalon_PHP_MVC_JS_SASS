@@ -1,6 +1,8 @@
 <h1 class="nombre-pagina">Restablece tu Password</h1>
 <p class="descripcion-pagina">Coloca tu password a continuación</p>
 
+<?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+<?php if($error) return;?>
 <form action="" class="formulario" method="POST">
     <div class="campo">
         <label for="password">Password:</label>
