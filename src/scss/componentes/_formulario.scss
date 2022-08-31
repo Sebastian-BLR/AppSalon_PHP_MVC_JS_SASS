@@ -24,5 +24,11 @@
         border-radius: 1rem;
         // arregla desbordamiento
         min-width: 1%;
+
+        &:disabled{
+            background-color: lighten($color: v.$negro, $amount: 40%);
+            color: v.$blanco;
+            cursor: not-allowed;
+        }
     }
 }
