@@ -38,4 +38,10 @@
         <p class="text-center">Verifica que la informacion sea correcta</p>
         
     </div>
+
+    <div class="paginacion">
+        <button id="anterior" class="boton">&laquo; Anteiror</button>
+        <button id="siguiente" class="boton">Siguiente &raquo;</button>
+    </div>
+    
 </div>
