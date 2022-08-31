@@ -105,10 +105,22 @@ class LoginController {
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST'):
             // Leer nuevo password y guardarlo
+            $password = new Usuario($_POST);
+            $alertas =$password -> validarPassword();
+
+            if(empty($alertas)){
+                $usuario -> password = null;
+                $usuario -> password = $password -> password;
+                $usuario -> hashPassword();
+                $usuario -> token = null;
+                $resultado = $usuario -> guardar();
+                if($resultado)
+                    header('Location: /');
+             }
+
         endif;
 
         $alertas = Usuario::getAlertas();
-
         $router -> render('auth/recuperar-password',[
             'alertas' => $alertas, 
             'error' => $error 
