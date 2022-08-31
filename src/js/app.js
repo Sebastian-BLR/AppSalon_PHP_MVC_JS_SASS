@@ -1,4 +1,6 @@
 let paso = 1;
+const pasoInicial = 1;
+const pasoFinal   = 3;
 document.addEventListener('DOMContentLoaded', function(){
     iniciarApp();
 });
@@ -6,7 +8,48 @@ document.addEventListener('DOMContentLoaded', function(){
 function iniciarApp(){
     mostrarSeccion();
     tabs(); //Cambia la Seccion cuando se precionen los tabs
+    botonesPaginador();// agreaga o quita los botones al paginador
+    paginaAnterior();
+    paginaSiguiente();
+}
+
+function paginaAnterior(){
+    const paginaAnterior = document.querySelector('#anterior');
+    paginaAnterior.addEventListener('click', function (){
+        if(paso > pasoInicial)
+        paso--;
+        console.log(paso);
+        mostrarSeccion();
+        botonesPaginador();
+    });
+}
+
+function paginaSiguiente(){
+    const paginaSiguiente = document.querySelector('#siguiente');
+    paginaSiguiente.addEventListener('click', function (){
+        if(paso < pasoFinal)
+        paso++;
+        console.log(paso);
+        mostrarSeccion();
+        botonesPaginador();
+    });
+}
+
+function botonesPaginador(){
+    const paginaAnterior  = document.querySelector('#anterior');
+    const paginaSiguiente = document.querySelector('#siguiente');
     
+    if ((paso - pasoInicial) === 0){
+        paginaAnterior.classList.add('ocultar');
+        paginaSiguiente.classList.remove('ocultar');
+    }else if ((paso - pasoFinal) === 0){
+        paginaSiguiente.classList.add('ocultar');
+        paginaAnterior.classList.remove('ocultar');
+    }else {
+        paginaSiguiente.classList.remove('ocultar');
+        paginaAnterior.classList.remove('ocultar');
+    }
+
 }
 
 function mostrarSeccion(){
@@ -34,6 +77,8 @@ function tabs(){
         boton.addEventListener('click', function(e){
             paso = parseInt(e.explicitOriginalTarget.dataset.paso);
             mostrarSeccion();
+            botonesPaginador();
+
         });
     });
 }
