@@ -19,6 +19,8 @@ function iniciarApp(){
     paginaAnterior();
     paginaSiguiente();
     consultarAPI();//Consulta la API en el baken de php
+    nombreCliente();// Agrega el nombre del cliente al objeto de cita
+    seleccionarFecha();// Agrega la cita al objeto de cita
 }
 
 async function consultarAPI(){
@@ -81,7 +83,6 @@ function seleccionarServicio(servicio){
     }
 
 
-    console.log(cita.servicios);
 }
 
 function paginaAnterior(){
@@ -123,6 +124,7 @@ function botonesPaginador(){
 
 }
 
+
 function mostrarSeccion(){
     // ocualtar la seccion que tenga la clase de mostrar
     const seccionAnterior = document.querySelector('.mostrar');
@@ -142,6 +144,8 @@ function mostrarSeccion(){
     tab.classList.add('actual');
 
 }
+
+
 function tabs(){
     const botones = document.querySelectorAll('.tabs button');
     botones.forEach(boton => {
@@ -154,3 +158,27 @@ function tabs(){
     });
 }
 
+function nombreCliente(){
+     cita.nombre = document.querySelector('#nombre').value;
+}
+
+function seleccionarFecha(){
+    const sabado  = 6;
+    const domingo = 0;
+    
+    const inputFecha = document.querySelector('#fecha');
+    inputFecha.addEventListener('input', (e) => {
+         const fechaSeleccionada = e.target.value;
+         const dia = new Date(fechaSeleccionada).getUTCDay();
+         
+        //  if(dia !== sabado && dia !== domingo ){
+        if(![sabado,domingo].includes(dia)){
+            cita.fecha = fechaSeleccionada;
+        }else{
+            e.target.value = '';
+         }
+
+    });
+
+
+}
