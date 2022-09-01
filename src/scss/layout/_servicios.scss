@@ -15,10 +15,14 @@
         transition-property: transform background-color;
         transition-duration: 300ms;
 
+        &.seleccionado{
+            background-color: v.$azul;
+            p{color: v.$blanco;}             
+        }
+        
 
         &:hover{
             transform: scale(1.05);
-            background-color: darken($color: v.$blanco, $amount: 12%);
         }
 
         p{ 

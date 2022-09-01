@@ -61,12 +61,27 @@ function mostrarServicios(servicios){
 }
 
 function seleccionarServicio(servicio){
+    const {id} = servicio;
     // obtengo los servicos de cita
     const {servicios} = cita;
-    // agrego los nuevos servicios a la cita
-    cita.servicios = [...servicios, servicio];
-    console.log(cita.servicios);
+    
+    // identificar el servicio
+    const servicioSeleccionado = document.querySelector(`[data-id-servicio='${id}']`);
+    // comprobar si un servivio ya esta agregado
+    if(servicios.some(agregado => agregado.id === id)){
+        // Eliminarlo
+        cita.servicios = servicios.filter(agregado => agregado.id !== id);
+        servicioSeleccionado.classList.remove('seleccionado');
+    }else{
+        // Agregarlo
+        // agrego los nuevos servicios a la cita
+        cita.servicios = [...servicios, servicio];
+        servicioSeleccionado.classList.add("seleccionado"); 
 
+    }
+
+
+    console.log(cita.servicios);
 }
 
 function paginaAnterior(){
