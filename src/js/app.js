@@ -11,6 +11,19 @@ function iniciarApp(){
     botonesPaginador();// agreaga o quita los botones al paginador
     paginaAnterior();
     paginaSiguiente();
+    consultarAPI();//Consulta la API en el baken de php
+}
+
+async function consultarAPI(){
+    try {
+        const url = 'http://localhost:3000/api/servicios';
+        const resultado = await fetch(url);
+        const servicios = await resultado.json();
+        console.log(servicios);
+   
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function paginaAnterior(){
