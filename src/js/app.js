@@ -150,7 +150,7 @@ function tabs(){
     const botones = document.querySelectorAll('.tabs button');
     botones.forEach(boton => {
         boton.addEventListener('click', function(e){
-            paso = parseInt(e.explicitOriginalTarget.dataset.paso);
+            paso = parseInt(e.target.dataset.paso);
             mostrarSeccion();
             botonesPaginador();
 
@@ -165,20 +165,40 @@ function nombreCliente(){
 function seleccionarFecha(){
     const sabado  = 6;
     const domingo = 0;
-    
+    let i = 0;
     const inputFecha = document.querySelector('#fecha');
-    inputFecha.addEventListener('input', (e) => {
+    inputFecha.addEventListener('input', e => {
          const fechaSeleccionada = e.target.value;
          const dia = new Date(fechaSeleccionada).getUTCDay();
-         
+        
         //  if(dia !== sabado && dia !== domingo ){
         if(![sabado,domingo].includes(dia)){
             cita.fecha = fechaSeleccionada;
+            console.log(++i);
         }else{
+            mostrarAlerta('error','No abrimos Sabados y Domingos');
             e.target.value = '';
-         }
 
+        }
     });
+}
+
+function mostrarAlerta(tipo, mensaje){
+
+    const alertaexistente = document.querySelector('#paso-2 p .alerta');
+    if(alertaexistente) return;
 
 
+    const alerta = document.createElement("DIV");
+    alerta.textContent = mensaje;
+    alerta.classList.add('alerta');
+    alerta.classList.add(tipo);
+
+    const formulario = document.querySelector('#paso-2 p');
+    
+    formulario.appendChild(alerta);
+    setTimeout(() => {
+        alerta.remove();
+    }, 3000);
+    
 }
