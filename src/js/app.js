@@ -165,7 +165,6 @@ function nombreCliente(){
 function seleccionarFecha(){
     const sabado  = 6;
     const domingo = 0;
-    let i = 0;
     const inputFecha = document.querySelector('#fecha');
     inputFecha.addEventListener('input', e => {
          const fechaSeleccionada = e.target.value;
@@ -174,7 +173,6 @@ function seleccionarFecha(){
         //  if(dia !== sabado && dia !== domingo ){
         if(![sabado,domingo].includes(dia)){
             cita.fecha = fechaSeleccionada;
-            console.log(++i);
         }else{
             mostrarAlerta('error','No abrimos Sabados y Domingos');
             e.target.value = '';
