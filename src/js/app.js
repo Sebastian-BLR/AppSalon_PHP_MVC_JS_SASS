@@ -308,10 +308,23 @@ function mostrarResumen(){
     const precioTotal = document.createElement("P")
     precioTotal.classList.add('precio-cita');
     precioTotal.innerHTML = `<span>Total:</span> $${total.toFixed(2)}`;
-
     resumen.appendChild(precioTotal);
 
+    const btnReservar = document.createElement('BUTTON');
+    btnReservar.classList.add('boton');
+    btnReservar.classList.add('r-boton');
+    btnReservar.textContent = 'Reservar Cita';
+    btnReservar.onclick = reservarCita;
+    resumen.appendChild(btnReservar);
+
+
+
 }
+
+function reservarCita(){
+    console.log('Reservando cita');
+}
+
 
 function formatearFechaEs(fecha){
     // fotmatear la fecha en español
