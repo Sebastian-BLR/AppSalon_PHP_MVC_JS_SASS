@@ -227,13 +227,13 @@ function mostrarResumen(){
     const validacionInfo      = !Object.values(cita).includes(''); 
     const validacionServicios = cita.servicios.length !== 0;
     
-    if(validacionInfo && validacionServicios){
-        // todo bien
-        console.log('todo bien');
+    // Limpiar el contenido de resumen
+    while(resumen.firstChild){
+            resumen.removeChild(resumen.firstChild);
     }
 
 
-
+// Errores
     if (!validacionInfo && !validacionServicios){
         // Faltan datos 
         mostrarAlerta('error','Faltan Servicios e Informacion', '.contenido-resumen',false);
@@ -247,4 +247,57 @@ function mostrarResumen(){
         mostrarAlerta('error','Seleccione almenos un servicio', '.contenido-resumen',false);
         }
     }
+    if(!validacionInfo || !validacionServicios) return;
+
+// Exito
+
+// Formatear el div de resumen
+const {nombre , fecha, hora, servicios} = cita;
+
+const nombreCliente = document.createElement('P');
+nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+const fechaCita = document.createElement('P');
+fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+const horaCita = document.createElement('P');
+horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
+
+resumen.appendChild(nombreCliente);
+resumen.appendChild(fechaCita);
+resumen.appendChild(horaCita);
+
+let total = 0;
+servicios.forEach(servicio =>{
+    const {id, nombre, precio} = servicio;
+
+    const contenedorServicio = document.createElement('DIV');
+    contenedorServicio.classList.add('contenedor-servicio');
+
+    const nombreServico = document.createElement("P")
+    nombreServico.textContent = nombre;
+    
+    const precioServico = document.createElement("P")
+    precioServico.innerHTML = `<span>Precio:</span> ${precio}`;
+
+
+
+    contenedorServicio.appendChild(nombreServico);
+    contenedorServicio.appendChild(precioServico);
+
+    resumen.appendChild(contenedorServicio);
+    total +=  parseFloat(precio);
+});
+
+const precioTotal = document.createElement("P")
+precioTotal.innerHTML = `<span>Total:</span> ${total}`;
+
+resumen.appendChild(precioTotal);
+
+
+
+
+
+
+
 }
