@@ -21,6 +21,7 @@ function iniciarApp(){
     consultarAPI();//Consulta la API en el baken de php
     nombreCliente();// Agrega el nombre del cliente al objeto de cita
     seleccionarFecha();// Agrega la cita al objeto de cita
+    seleccionarHora();// Agrega la hora de la cita al objeto
 }
 
 async function consultarAPI(){
@@ -177,6 +178,23 @@ function seleccionarFecha(){
             mostrarAlerta('error','No abrimos Sabados y Domingos');
             e.target.value = '';
 
+        }
+    });
+}
+
+
+function seleccionarHora(){
+    const inputHora = document.querySelector('#hora');
+    inputHora.addEventListener('input', e =>{
+        const horaSeleccionada = e.target.value;
+        const hora = horaSeleccionada.split(":")[0];
+        if(hora < 9 || hora > 18){
+            e.target.value = '';
+            cita.hora = '';
+            mostrarAlerta('error', 'Hora no valida')
+        }else{
+            cita.hora = horaSeleccionada;
+            console.log(cita);
         }
     });
 }
