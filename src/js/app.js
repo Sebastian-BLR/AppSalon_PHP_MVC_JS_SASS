@@ -43,7 +43,7 @@ function mostrarServicios(servicios){
         const {id, nombre, precio} = servicio; 
 
         const nombreServicio = document.createElement('p');
-        nombreServicio.classList.add('nombre-servico');
+        nombreServicio.classList.add('nombre-servicio');
         nombreServicio.textContent = nombre;
         
         const precioServicio = document.createElement('p');
@@ -66,7 +66,7 @@ function mostrarServicios(servicios){
 
 function seleccionarServicio(servicio){
     const {id} = servicio;
-    // obtengo los servicos de cita
+    // obtengo los servicios de cita
     const {servicios} = cita;
     
     // identificar el servicio
@@ -247,52 +247,68 @@ function mostrarResumen(){
         mostrarAlerta('error','Seleccione almenos un servicio', '.contenido-resumen',false);
         }
     }
+
     if(!validacionInfo || !validacionServicios) return;
 
-// Exito
+    // Exito
 
-// Formatear el div de resumen
-const {nombre , fecha, hora, servicios} = cita;
+    // Formatear el div de resumen
+    const {nombre , fecha, hora, servicios} = cita;
 
-const nombreCliente = document.createElement('P');
-nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+    const nombreCliente = document.createElement('P');
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
 
-const fechaCita = document.createElement('P');
-fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
 
-const horaCita = document.createElement('P');
-horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
-
-resumen.appendChild(nombreCliente);
-resumen.appendChild(fechaCita);
-resumen.appendChild(horaCita);
-
-let total = 0;
-servicios.forEach(servicio =>{
-    const {id, nombre, precio} = servicio;
-
-    const contenedorServicio = document.createElement('DIV');
-    contenedorServicio.classList.add('contenedor-servicio');
-
-    const nombreServico = document.createElement("P")
-    nombreServico.textContent = nombre;
-    
-    const precioServico = document.createElement("P")
-    precioServico.innerHTML = `<span>Precio:</span> ${precio}`;
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
 
 
+    const tituloInfo = document.createElement("DIV");
+    tituloInfo.classList.add('titulo-cita');
+    tituloInfo.innerHTML = '<h3>Datos de la cita</h3>';
+    resumen.appendChild(tituloInfo);
 
-    contenedorServicio.appendChild(nombreServico);
-    contenedorServicio.appendChild(precioServico);
+    resumen.appendChild(nombreCliente);
+    resumen.appendChild(fechaCita);
+    resumen.appendChild(horaCita);
 
-    resumen.appendChild(contenedorServicio);
-    total +=  parseFloat(precio);
-});
+    let total = 0;
 
-const precioTotal = document.createElement("P")
-precioTotal.innerHTML = `<span>Total:</span> ${total}`;
+    const tituloServicios = document.createElement("DIV");
+    tituloServicios.classList.add('titulo-servicios');
+    tituloServicios.innerHTML = '<h3>Servicios Solicitados</h3>';
+    resumen.appendChild(tituloServicios);
 
-resumen.appendChild(precioTotal);
+    // iterando en los servicios
+    servicios.forEach(servicio =>{
+        const {id, nombre, precio} = servicio;
+
+        const contenedorServicio = document.createElement('DIV');
+        contenedorServicio.classList.add('contenedor-servicio');
+
+        const nombreServicio = document.createElement("P")
+        nombreServicio.textContent = nombre;
+        
+        const precioServicio = document.createElement("P")
+        precioServicio.classList.add('precio-cita');
+        precioServicio.innerHTML = `<span>Precio:</span> $${precio}`;
+
+
+
+        contenedorServicio.appendChild(nombreServicio);
+        contenedorServicio.appendChild(precioServicio);
+
+        resumen.appendChild(contenedorServicio);
+        total +=  parseFloat(precio);
+    });
+
+    const precioTotal = document.createElement("P")
+    precioTotal.classList.add('precio-cita');
+    precioTotal.innerHTML = `<span>Total:</span> $${total.toFixed(2)}`;
+
+    resumen.appendChild(precioTotal);
 
 
 
