@@ -21,7 +21,8 @@ function iniciarApp(){
     consultarAPI();//Consulta la API en el baken de php
     nombreCliente();// Agrega el nombre del cliente al objeto de cita
     seleccionarFecha();// Agrega la cita al objeto de cita
-    seleccionarHora();// Agrega la hora de la cita al objeto
+    seleccionarHora();// Agrega la hora de la cita al objeto'
+    mostrarResumen();// Muestra el resumen de la cita
 }
 
 async function consultarAPI(){
@@ -91,7 +92,6 @@ function paginaAnterior(){
     paginaAnterior.addEventListener('click', function (){
         if(paso > pasoInicial)
         paso--;
-        console.log(paso);
         mostrarSeccion();
         botonesPaginador();
     });
@@ -102,7 +102,6 @@ function paginaSiguiente(){
     paginaSiguiente.addEventListener('click', function (){
         if(paso < pasoFinal)
         paso++;
-        console.log(paso);
         mostrarSeccion();
         botonesPaginador();
     });
@@ -118,6 +117,7 @@ function botonesPaginador(){
     }else if ((paso - pasoFinal) === 0){
         paginaSiguiente.classList.add('ocultar');
         paginaAnterior.classList.remove('ocultar');
+        mostrarResumen();
     }else {
         paginaSiguiente.classList.remove('ocultar');
         paginaAnterior.classList.remove('ocultar');
@@ -154,6 +154,7 @@ function tabs(){
             paso = parseInt(e.target.dataset.paso);
             mostrarSeccion();
             botonesPaginador();
+
 
         });
     });
@@ -194,15 +195,16 @@ function seleccionarHora(){
             mostrarAlerta('error', 'Hora no valida')
         }else{
             cita.hora = horaSeleccionada;
-            console.log(cita);
         }
     });
 }
 
-function mostrarAlerta(tipo, mensaje){
+function mostrarAlerta(tipo, mensaje, elemento = '.formulario', desaparece = true){
 
-    const alertaexistente = document.querySelector('#paso-2 p .alerta');
-    if(alertaexistente) return;
+    const alertaexistente = document.querySelector('.alerta');
+    if(alertaexistente) 
+        alertaexistente.remove();
+    
 
 
     const alerta = document.createElement("DIV");
@@ -210,11 +212,39 @@ function mostrarAlerta(tipo, mensaje){
     alerta.classList.add('alerta');
     alerta.classList.add(tipo);
 
-    const formulario = document.querySelector('#paso-2 p');
+    const referencia = document.querySelector(elemento);
     
-    formulario.appendChild(alerta);
-    setTimeout(() => {
-        alerta.remove();
-    }, 3000);
+    referencia.appendChild(alerta);
+    if(desaparece)
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000);
     
+}
+
+function mostrarResumen(){
+    const resumen             = document.querySelector('.contenido-resumen');
+    const validacionInfo      = !Object.values(cita).includes(''); 
+    const validacionServicios = cita.servicios.length !== 0;
+    
+    if(validacionInfo && validacionServicios){
+        // todo bien
+        console.log('todo bien');
+    }
+
+
+
+    if (!validacionInfo && !validacionServicios){
+        // Faltan datos 
+        mostrarAlerta('error','Faltan Servicios e Informacion', '.contenido-resumen',false);
+    }else{
+        if(!validacionInfo){
+            // Falta info
+        mostrarAlerta('error','Falta Informacion para la cita', '.contenido-resumen',false);
+        }   
+        if(!validacionServicios){
+            // faltan servicios
+        mostrarAlerta('error','Seleccione almenos un servicio', '.contenido-resumen',false);
+        }
+    }
 }
