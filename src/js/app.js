@@ -324,12 +324,16 @@ function mostrarResumen(){
 async function reservarCita(){
         const datos = new FormData();
         datos.append('nombre', 'Sebastian');
+        datos.append('edad', 25);
 
         // console.log([...datos]);
 
         const url = 'http://localhost:3000/api/citas';
 
-        const respuesta = await fetch(url, {method: 'POST'});
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: datos
+        });
 
         const resultado = await respuesta.json();
         console.log(resultado);

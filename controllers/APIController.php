@@ -10,10 +10,13 @@ class APIController{
     }
 
     public static function guardar(){
+        
+        if($_SERVER['REQUEST_METHOD'] ==='POST'){
         $respuesta = [
-            'mensaje' => 'Todo OK'
+            'mensaje' => $_POST
         ];
 
         echo json_encode($respuesta);
+        }
     }
 }
