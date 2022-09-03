@@ -13,7 +13,7 @@ class APIController{
         
         if($_SERVER['REQUEST_METHOD'] ==='POST'){
         $respuesta = [
-            'mensaje' => $_POST
+            'datos' => $_POST
         ];
 
         echo json_encode($respuesta);

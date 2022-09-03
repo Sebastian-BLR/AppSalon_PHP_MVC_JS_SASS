@@ -321,22 +321,30 @@ function mostrarResumen(){
 
 }
 
+
+
 async function reservarCita(){
-        const datos = new FormData();
-        datos.append('nombre', 'Sebastian');
-        datos.append('edad', 25);
 
-        // console.log([...datos]);
+    const {nombre, fecha, hora, servicios} = cita;
+    const idServicios = servicios.map(servicio => servicio.id);
 
-        const url = 'http://localhost:3000/api/citas';
+    
+    const datos = new FormData();   
+    datos.append('nombre', nombre);
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    datos.append('idServicios', idServicios);
+    // console.log([...datos]);
 
-        const respuesta = await fetch(url, {
-            method: 'POST',
-            body: datos
-        });
+    const url = 'http://localhost:3000/api/citas';
 
-        const resultado = await respuesta.json();
-        console.log(resultado);
+    const respuesta = await fetch(url, {
+        method: 'POST',
+        body: datos
+    });
+
+    const resultado = await respuesta.json();
+    console.log(resultado);
 }
 
 
