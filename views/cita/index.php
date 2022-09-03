@@ -31,6 +31,8 @@
                 <label for="hora">Hora</label>
                 <input type="time" id="hora">
             </div>
+
+            <input type="hidden" id='id' value="<?php echo sz($id); ?>"> 
         </form>
     </div>
     <div id="paso-3" class="seccion contenido-resumen">

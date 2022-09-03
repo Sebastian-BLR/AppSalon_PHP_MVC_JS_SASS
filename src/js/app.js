@@ -3,9 +3,10 @@ const pasoInicial = 1;
 const pasoFinal   = 3;
 
 const cita ={
-    nombre: '',
-    fecha:  '',
-    hora:   '',
+    id:        '', 
+    nombre:    '',
+    fecha:     '',
+    hora:      '',
     servicios: []
 }
 document.addEventListener('DOMContentLoaded', function(){
@@ -20,6 +21,7 @@ function iniciarApp(){
     paginaSiguiente();
     consultarAPI();//Consulta la API en el baken de php
     nombreCliente();// Agrega el nombre del cliente al objeto de cita
+    idCliente();// Agrega el id del cliente al objeto de cita
     seleccionarFecha();// Agrega la cita al objeto de cita
     seleccionarHora();// Agrega la hora de la cita al objeto'
     mostrarResumen();// Muestra el resumen de la cita
@@ -162,6 +164,10 @@ function tabs(){
 
 function nombreCliente(){
      cita.nombre = document.querySelector('#nombre').value;
+}
+
+function idCliente(){
+     cita.id = document.querySelector('#id').value;
 }
 
 function seleccionarFecha(){
@@ -325,12 +331,12 @@ function mostrarResumen(){
 
 async function reservarCita(){
 
-    const {nombre, fecha, hora, servicios} = cita;
+    const {id, fecha, hora, servicios} = cita;
     const idServicios = servicios.map(servicio => servicio.id);
 
     
     const datos = new FormData();   
-    datos.append('nombre', nombre);
+    datos.append('usuarioId', id);
     datos.append('fecha', fecha);
     datos.append('hora', hora);
     datos.append('idServicios', idServicios);
