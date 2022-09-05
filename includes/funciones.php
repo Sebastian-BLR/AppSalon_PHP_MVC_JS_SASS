@@ -13,3 +13,10 @@ function sz($html) : string {
     $sz = htmlspecialchars($html);
     return $sz;
 }
+
+// Funcion que revisa si el usuario esta autenticado
+
+function isAuth() : void {
+    if(!isset($_SESSION['login']))
+        header('Location: /');
+}
