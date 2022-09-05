@@ -52,7 +52,8 @@ class LoginController {
 
     // Cerrar sesion
     public static function logout(){
-        echo 'Desde logout';
+        $_SESSION = [];
+        header('Location: /');
     }
     
     // Recuperar password
