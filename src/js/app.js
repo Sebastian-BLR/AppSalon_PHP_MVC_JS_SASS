@@ -359,8 +359,10 @@ async function reservarCita(){
                 title: 'Cita Creada',
                 text: 'Se guardo correctamente su cita',
             }).then(() => {
-                window.location.reload();
-            })    
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            });    
     } catch (error) {
         Swal.fire({
             icon: 'error',
