@@ -122,7 +122,13 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
-
+    
+    // busca medinte un query personalizado
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        return  $resultado;
+    }
+    
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
         $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite}";
