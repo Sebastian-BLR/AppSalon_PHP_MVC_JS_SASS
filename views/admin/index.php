@@ -10,6 +10,11 @@
     </form>
 </div>
 <div id="citas-admin">
+    
+    <?php if( empty ($citas)): ?>
+        <h1>No hay citas en esta fecha</h1>
+    <?php endif;?>
+    
     <ul class="citas">
         <?php $idCita = null;
                 foreach($citas as $key => $cita):
