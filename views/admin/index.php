@@ -4,8 +4,8 @@
 <div class="busqueda">
     <form action="" class="formulario">
         <div class="campo">
-            <label for="fecha">fecha</label>
-            <input type="date" name="facha" id="fecha">
+            <label for="fecha">Fecha</label>
+            <input type="date" name="facha" id="fecha" value="<?php echo $fecha; ?>">
         </div>
     </form>
 </div>
