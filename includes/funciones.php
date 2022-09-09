@@ -20,3 +20,8 @@ function isAuth() : void {
     if(!isset($_SESSION['login']))
         header('Location: /');
 }
+
+function esUltimo(string $actual,string $proximo) :bool{
+    return $actual !== $proximo;
+        
+}
