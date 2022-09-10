@@ -3,11 +3,16 @@
 
 .boton{
     @include m.boton(v.$azul, v.$blanco);
+    margin-top: v.$separacion + 2rem;
 }
 
+.boton-eliminar{
+    @include m.boton(v.$rojo, v.$blanco);
+    
+}
 .r-boton{
-    margin-top: v.$separacion + 2rem;
     margin-left: auto;
     margin-right: 0;
     margin-bottom: 1rem;
+    display: block;
 }

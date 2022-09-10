@@ -42,6 +42,10 @@
                                 if(esUltimo($actual, $proximo)):         ?>
                                 
                                 <p>Total: <span>$<?php echo number_format($total, 2);?></span></p>
+                                <form action="/api/eliminar" method="POST">
+                                    <input type="hidden" name="id" value="<?php echo $cita -> id;?>">
+                                    <input type="submit" value="Eliminar cita" class="boton-eliminar r-boton">
+                                </form>
                 <?php           
                                 endif;
                 endforeach;           ?>
