@@ -21,6 +21,12 @@ function isAuth() : void {
         header('Location: /');
 }
 
+// Funcion que revisa si el usuario es admin
+function isAdmin() : void {
+    if(!isset($_SESSION['admin']))
+        header('Location: /');
+}
+
 function esUltimo(string $actual,string $proximo) :bool{
     return $actual !== $proximo;
         
