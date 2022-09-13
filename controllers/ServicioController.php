@@ -7,8 +7,11 @@ use MVC\Router;
 
 class ServicioController{
     public static function index(Router $router){
+        $servicios = Servicio::all();
+
         $router -> render('/servicios/index',[
-            'nombre' => $_SESSION['nombre']
+            'nombre' => $_SESSION['nombre'],
+            'servicios' => $servicios
         ]);
     }
 
@@ -24,7 +27,7 @@ class ServicioController{
                 $servicio -> guardar();
                 header('Location: /servicios');
             }
-            
+
         endif;
 
         $router -> render('/servicios/crear',[
