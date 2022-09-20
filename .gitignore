@@ -1,5 +1,5 @@
 node_modules
 package-lock.json
 vendor
-composer.lock
 includes/.env
+appsalon_mvc.sql
