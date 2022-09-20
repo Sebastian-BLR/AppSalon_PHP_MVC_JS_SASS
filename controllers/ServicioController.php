@@ -38,11 +38,23 @@ class ServicioController{
     }
 
     public static function actualizar(Router $router){
+        
+        $idValido = is_numeric($_GET['id']);
+        if(!$idValido) return;
+                
+        $id = $_GET['id'];
+        $servicio = Servicio::find($id);
+        
+        $alertas = [];
+        
+        
         if($_SERVER['REQUEST_METHOD'] === 'POST'): 
         endif;
 
         $router -> render('/servicios/actualizar',[
-            'nombre' => $_SESSION['nombre']
+            'nombre'   => $_SESSION['nombre'],
+            'servicio' => $servicio,
+            'alertas'  => $alertas
         ]);
     }
 
