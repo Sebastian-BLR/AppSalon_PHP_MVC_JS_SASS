@@ -1,5 +1,8 @@
-node_modules
+node_modules/
 package-lock.json
-vendor
+vendor/
 composer.lock
 includes/.env
+src/
+appsalon_mvc.sql
+gulpfile.js
