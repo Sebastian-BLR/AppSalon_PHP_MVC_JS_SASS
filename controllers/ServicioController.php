@@ -49,6 +49,14 @@ class ServicioController{
         
         
         if($_SERVER['REQUEST_METHOD'] === 'POST'): 
+            $servicio -> sincronizar($_POST);
+            $alertas = $servicio -> validar();
+
+            if(empty($alertas)){
+                $servicio -> guardar();
+                header('Location: /servicios');
+            }
+
         endif;
 
         $router -> render('/servicios/actualizar',[
